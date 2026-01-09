@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChatRequest {
-    private String message;
-    private String conversationId;
+public class ChatResponse {
+    private String response;
+    private String userName;
+    private Long timestamp;
 }
