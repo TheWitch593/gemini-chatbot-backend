@@ -1,13 +1,37 @@
-package com.chatbot.gemini_chatbot;
+
+package com.chatbot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class GeminiChatbotApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GeminiChatbotApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GeminiChatbotApplication.class, args);
+    }
 
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins(
+                            "http://localhost:3000",
+                            "http://localhost:5173",
+                            "https://*.vercel.app",
+                            "https://*.netlify.app",
+                            "https://*.github.dev",
+                            "https://*.githubpreview.dev"
+                        )
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
+            }
+        };
+    }
 }
