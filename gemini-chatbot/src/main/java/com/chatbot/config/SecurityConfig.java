@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${frontend.url:http://localhost:3000}")
+    @Value("${frontend.url:http://localhost:8080}")
     private String frontendUrl;
 
     @Bean
