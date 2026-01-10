@@ -23,6 +23,7 @@ public class GeminiChatbotApplication {
                         .allowedOrigins(
                             "http://localhost:3000",
                             "http://localhost:5173",
+                            "http://localhost:8080",
                             "https://*.vercel.app",
                             "https://*.netlify.app",
                             "https://*.github.dev",
