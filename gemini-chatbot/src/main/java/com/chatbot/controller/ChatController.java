@@ -22,16 +22,21 @@ public class ChatController {
     public ResponseEntity<ChatResponse> sendMessage(
             @RequestBody ChatRequest request,
             @AuthenticationPrincipal OAuth2User principal) {
-        
         String userName = principal != null ? principal.getAttribute("name") : "Anonymous";
-        
-        String response = geminiService.generateResponse(request.getMessage());
-        
-        return ResponseEntity.ok(ChatResponse.builder()
+        try {
+            String response = geminiService.generateResponse(request.getMessage());
+            return ResponseEntity.ok(ChatResponse.builder()
                 .response(response)
                 .userName(userName)
                 .timestamp(System.currentTimeMillis())
                 .build());
+        } catch (Exception ex) {
+            return ResponseEntity.status(500).body(ChatResponse.builder()
+                .response("Error processing message: " + ex.getMessage())
+                .userName(userName)
+                .timestamp(System.currentTimeMillis())
+                .build());
+        }
     }
 
     @GetMapping("/user")

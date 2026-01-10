@@ -56,7 +56,8 @@ public class GeminiService {
             return parseGeminiResponse(response.getBody());
             
         } catch (Exception e) {
-            throw new RuntimeException("Error calling Gemini API: " + e.getMessage(), e);
+            // Return a friendly message instead of crashing the request
+            return "Gemini API error: " + e.getMessage();
         }
     }
 
