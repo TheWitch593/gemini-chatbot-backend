@@ -1,11 +1,7 @@
-
 package com.chatbot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class GeminiChatbotApplication {
@@ -14,25 +10,6 @@ public class GeminiChatbotApplication {
         SpringApplication.run(GeminiChatbotApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins(
-                            "http://localhost:3000",
-                            "http://localhost:5173",
-                            "http://localhost:8080",
-                            "https://*.vercel.app",
-                            "https://*.netlify.app",
-                            "https://*.github.dev",
-                            "https://*.githubpreview.dev"
-                        )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
-            }
-        };
-    }
+    // I DELETED THE corsConfigurer METHOD FROM HERE
+    // because we are handling it in SecurityConfig.java now.
 }
