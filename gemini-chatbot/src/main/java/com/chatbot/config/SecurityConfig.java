@@ -44,11 +44,13 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Allow your frontend origins
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:8080",
-            "http://localhost:3000",
-            "https://musical-acorn-w69vqj49r4c5g7r-8081.app.github.dev"
+        // Allow your frontend origins with wildcard support
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+            "http://localhost:*",
+            "https://*.vercel.app",
+            "https://*.netlify.app",
+            "https://*.github.dev",
+            "https://*.githubpreview.dev"
         ));
         
         // Allow all HTTP methods

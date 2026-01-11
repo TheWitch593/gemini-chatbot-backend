@@ -20,10 +20,8 @@ public class GeminiChatbotApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                            "http://localhost:3000",
-                            "http://localhost:5173",
-                            "http://localhost:8080",
+                        .allowedOriginPatterns(
+                            "http://localhost:*",
                             "https://*.vercel.app",
                             "https://*.netlify.app",
                             "https://*.github.dev",
