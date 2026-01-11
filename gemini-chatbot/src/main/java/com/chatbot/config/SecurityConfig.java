@@ -45,8 +45,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         
         // Allow your frontend origins with wildcard support
+        // Note: For production, consider restricting to specific subdomains
+        // e.g., "https://your-app.vercel.app" instead of "https://*.vercel.app"
         configuration.setAllowedOriginPatterns(Arrays.asList(
-            "http://localhost:*",
+            "http://localhost:*",  // Allows any local port for development
             "https://*.vercel.app",
             "https://*.netlify.app",
             "https://*.github.dev",

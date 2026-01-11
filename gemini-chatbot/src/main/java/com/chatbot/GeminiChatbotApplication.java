@@ -19,9 +19,11 @@ public class GeminiChatbotApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                // Allow frontend origins with wildcard support
+                // Note: For production, restrict to specific subdomains for better security
                 registry.addMapping("/**")
                         .allowedOriginPatterns(
-                            "http://localhost:*",
+                            "http://localhost:*",  // Allows any local port for development
                             "https://*.vercel.app",
                             "https://*.netlify.app",
                             "https://*.github.dev",
