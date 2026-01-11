@@ -11,6 +11,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Collections; // <--- ADDED THIS IMPORT
 
 @Configuration
 @EnableWebSecurity
@@ -44,23 +45,16 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Allow your frontend origins
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:8080",
-            "http://localhost:3000",
-            "https://musical-acorn-w69vqj49r4c5g7r-8081.app.github.dev"
-        ));
+        // --- THIS IS THE FIX ---
+        // OLD CODE: configuration.setAllowedOrigins(Arrays.asList("...musical-acorn..."));
         
-        // Allow all HTTP methods
+        // NEW CODE: Allow EVERYONE (*) so it works on any codespace URL
+        configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
+        
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        
-        // Allow all headers
         configuration.setAllowedHeaders(Arrays.asList("*"));
-        
-        // Allow credentials (cookies)
         configuration.setAllowCredentials(true);
         
-        // Apply CORS to all endpoints
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig {
+public class WebSecurityConfig {
 
     // This reads the 'frontend.url' value from your application.yaml
     @Value("${frontend.url}")
